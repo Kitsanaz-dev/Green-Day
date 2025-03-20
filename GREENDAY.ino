@@ -7,8 +7,8 @@ int LDR = 10;
 
 
 int Relay = 5;
-int Relay_2 = 6;
-int Relay_3 = 4;
+int Relay_2 = 6; // Fan
+int Relay_3 = 4; //LED
 
 
 #define DHTPIN 9
@@ -16,21 +16,25 @@ int Relay_3 = 4;
 DHT dht(DHTPIN, DHTTYPE);
     
 int Mode;
-const char *ssid = "CEIT-IoT-Lab_Wi-Fi5"; 
-const char *password = "1oTCEIT@2022";  
+const char *ssid = "Myloveforyou"; 
+const char *password = "5ha5ha5ha5ha";  
      
     
-const char *mqtt_broker = "192.168.3.204"; 
-const char *topic_control = "Pump/Control";
+const char *mqtt_broker = "183.182.103.136"; 
+const char *topic_control = "mrc/PumpControl";
 
-const char *topic_temp = "temp";
-const char *topic_humi = "humi";
-const char *topic_soil = "soil";
-const char *topic_ldr = "ldr";
+const char *topic_temp = "mrc/temp";
+const char *topic_humi = "mrc/humi";
+const char *topic_soil = "mrc/soil";
+const char *topic_ldr = "mrc/ldr";
 
-const char *topic_pump = "Pump/State";
-const char *topic_fan = "Fan/State";
-const char *topic_led = "LED/State";
+const char *topic_pump = "mrc/PumpState";
+const char *topic_fan = "mrc/FanState";
+const char *topic_led = "mrc/LEDState";
+
+
+const char *topic_user = "mrc";
+const char *topic_password = "123456";
 
 
 const int mqtt_port = 1883;
@@ -67,7 +71,7 @@ void setup() {
      
     Serial.printf("The client %s connects to mosquitto mqtt broker\n", client_id.c_str());
      
-    if (client.connect(client_id.c_str())) {
+    if (client.connect(client_id.c_str(),topic_user,topic_password)) {
       Serial.println("Public emqx mqtt broker connected");
      } else {
       Serial.print("failed with state ");
@@ -142,7 +146,7 @@ void loop() {
   value = map(value,4095,0,0,100);
 
   int value_1 = analogRead(LDR);
-  value_1 = map(value_1,4095,0,0,100);
+  // value_1 = map(value_1,4095,0,0,100);
        
        
   float h = dht.readHumidity();
@@ -171,19 +175,19 @@ void Auto_Temperature(float temp,int M){
 }
 
 void Auto_Soil(int v,int M){
-  if(v <=60 and M==0){
+  if(v <40 and M==0){
     digitalWrite(Relay, HIGH);
     client.publish(topic_pump,String("Plumb is on").c_str());
-  }else if(v >=80 and M==0){
+  }else if(v >=60 and M==0){
     digitalWrite(Relay, LOW);
     client.publish(topic_pump,String("Plumb is off").c_str());
   }
 }
 void Auto_LDR(int v_1,int M){
-  if(v_1 <=10 and M==0){
+  if(v_1 >4000 and M==0){
     digitalWrite(Relay_3, HIGH);
     client.publish(topic_led,String("LED is on").c_str());
-  }else if(v_1 >10 and M==0){
+  }else if(v_1 <=3900 and M==0){
     digitalWrite(Relay_3, LOW);
     client.publish(topic_led,String("LED is off").c_str());
   }
