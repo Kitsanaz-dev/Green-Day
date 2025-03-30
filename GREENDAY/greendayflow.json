@@ -1,0 +1,613 @@
+[
+    {
+        "id": "54db409134b9e678",
+        "type": "tab",
+        "label": "Greenday",
+        "disabled": true,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "3718be5a0863f50c",
+        "type": "mqtt in",
+        "z": "54db409134b9e678",
+        "name": "",
+        "topic": "mrc/temp",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "18e03f75f9504026",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 60,
+        "wires": [
+            [
+                "20eadc87b52aba99"
+            ]
+        ]
+    },
+    {
+        "id": "9855c108ba2a0650",
+        "type": "mqtt in",
+        "z": "54db409134b9e678",
+        "name": "",
+        "topic": "mrc/humi",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "18e03f75f9504026",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 120,
+        "wires": [
+            [
+                "f28fe82a0e04a348"
+            ]
+        ]
+    },
+    {
+        "id": "743b9c71b822bcb9",
+        "type": "mqtt out",
+        "z": "54db409134b9e678",
+        "name": "",
+        "topic": "mrc/PumpControl",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "18e03f75f9504026",
+        "x": 750,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "f28fe82a0e04a348",
+        "type": "ui_gauge",
+        "z": "54db409134b9e678",
+        "name": "",
+        "group": "c761ba35acda90b8",
+        "order": 2,
+        "width": 3,
+        "height": 4,
+        "gtype": "donut",
+        "title": "Humid",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 450,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "20eadc87b52aba99",
+        "type": "ui_gauge",
+        "z": "54db409134b9e678",
+        "name": "",
+        "group": "c761ba35acda90b8",
+        "order": 1,
+        "width": 3,
+        "height": 4,
+        "gtype": "donut",
+        "title": "Temperature",
+        "label": "C",
+        "format": "{{value}}",
+        "min": "-40",
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 470,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "f632fa615ca4c821",
+        "type": "ui_switch",
+        "z": "54db409134b9e678",
+        "name": "",
+        "label": "Manual-Mode",
+        "tooltip": "",
+        "group": "f7b08c345a9d34a4",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "Pump/Control",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "M",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "A",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 600,
+        "y": 500,
+        "wires": [
+            [
+                "743b9c71b822bcb9"
+            ]
+        ]
+    },
+    {
+        "id": "87e9d816aafb2d5e",
+        "type": "ui_button",
+        "z": "54db409134b9e678",
+        "name": "",
+        "group": "f7b08c345a9d34a4",
+        "order": 7,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Turn_Off_Pumb",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "red",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "Pump/Control",
+        "topicType": "msg",
+        "x": 340,
+        "y": 580,
+        "wires": [
+            [
+                "743b9c71b822bcb9"
+            ]
+        ]
+    },
+    {
+        "id": "f80c12bbcbfbe186",
+        "type": "ui_button",
+        "z": "54db409134b9e678",
+        "name": "",
+        "group": "f7b08c345a9d34a4",
+        "order": 6,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Turn_On_Pumb",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "1",
+        "payloadType": "str",
+        "topic": "Pump/Control",
+        "topicType": "msg",
+        "x": 340,
+        "y": 540,
+        "wires": [
+            [
+                "743b9c71b822bcb9"
+            ]
+        ]
+    },
+    {
+        "id": "3e45ecb4df75b1f1",
+        "type": "mqtt in",
+        "z": "54db409134b9e678",
+        "name": "",
+        "topic": "mrc/PumpState",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "18e03f75f9504026",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 220,
+        "y": 320,
+        "wires": [
+            [
+                "3588c946be30523c"
+            ]
+        ]
+    },
+    {
+        "id": "e9185ba630d9e64a",
+        "type": "ui_text",
+        "z": "54db409134b9e678",
+        "group": "f7b08c345a9d34a4",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Fan_State",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 550,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "1fdfdb41ec8e17c3",
+        "type": "ui_button",
+        "z": "54db409134b9e678",
+        "name": "",
+        "group": "f7b08c345a9d34a4",
+        "order": 3,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Turn_On_Fan",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "2",
+        "payloadType": "str",
+        "topic": "Pump/Control",
+        "topicType": "msg",
+        "x": 340,
+        "y": 660,
+        "wires": [
+            [
+                "743b9c71b822bcb9"
+            ]
+        ]
+    },
+    {
+        "id": "21a2bd827ad2ab08",
+        "type": "ui_button",
+        "z": "54db409134b9e678",
+        "name": "",
+        "group": "f7b08c345a9d34a4",
+        "order": 9,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Turn_On_Led",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "4",
+        "payloadType": "str",
+        "topic": "Pump/Control",
+        "topicType": "msg",
+        "x": 340,
+        "y": 780,
+        "wires": [
+            [
+                "743b9c71b822bcb9"
+            ]
+        ]
+    },
+    {
+        "id": "f6ff6f1e61726c69",
+        "type": "ui_button",
+        "z": "54db409134b9e678",
+        "name": "",
+        "group": "f7b08c345a9d34a4",
+        "order": 10,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Turn_Off_Led",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "red",
+        "className": "",
+        "icon": "",
+        "payload": "5",
+        "payloadType": "str",
+        "topic": "Pump/Control",
+        "topicType": "msg",
+        "x": 340,
+        "y": 820,
+        "wires": [
+            [
+                "743b9c71b822bcb9"
+            ]
+        ]
+    },
+    {
+        "id": "ebe374aa57969c12",
+        "type": "ui_button",
+        "z": "54db409134b9e678",
+        "name": "",
+        "group": "f7b08c345a9d34a4",
+        "order": 4,
+        "width": 3,
+        "height": 1,
+        "passthru": false,
+        "label": "Turn_Off_Fan",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "red",
+        "className": "",
+        "icon": "",
+        "payload": "3",
+        "payloadType": "str",
+        "topic": "Pump/Control",
+        "topicType": "msg",
+        "x": 340,
+        "y": 700,
+        "wires": [
+            [
+                "743b9c71b822bcb9"
+            ]
+        ]
+    },
+    {
+        "id": "3588c946be30523c",
+        "type": "ui_text",
+        "z": "54db409134b9e678",
+        "group": "f7b08c345a9d34a4",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "Pumb_State",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 510,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "32f5a57696246b1c",
+        "type": "ui_text",
+        "z": "54db409134b9e678",
+        "group": "f7b08c345a9d34a4",
+        "order": 8,
+        "width": 6,
+        "height": 1,
+        "name": "",
+        "label": "LED_State",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 510,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "bf381c6f22f18dfb",
+        "type": "ui_gauge",
+        "z": "54db409134b9e678",
+        "name": "",
+        "group": "c761ba35acda90b8",
+        "order": 4,
+        "width": 3,
+        "height": 4,
+        "gtype": "donut",
+        "title": "LDR",
+        "label": "%",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 450,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "6400e95f15eb31dd",
+        "type": "ui_gauge",
+        "z": "54db409134b9e678",
+        "name": "",
+        "group": "c761ba35acda90b8",
+        "order": 3,
+        "width": 3,
+        "height": 4,
+        "gtype": "donut",
+        "title": "Soil",
+        "label": "%",
+        "format": "{{value}}",
+        "min": "0",
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 450,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "bd43ad6f3cbb5898",
+        "type": "mqtt in",
+        "z": "54db409134b9e678",
+        "name": "",
+        "topic": "mrc/soil",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "18e03f75f9504026",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 180,
+        "wires": [
+            [
+                "6400e95f15eb31dd"
+            ]
+        ]
+    },
+    {
+        "id": "c16fe977b2e4ab49",
+        "type": "mqtt in",
+        "z": "54db409134b9e678",
+        "name": "",
+        "topic": "mrc/ldr",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "18e03f75f9504026",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 170,
+        "y": 240,
+        "wires": [
+            [
+                "bf381c6f22f18dfb"
+            ]
+        ]
+    },
+    {
+        "id": "b4d8db25265fd4d8",
+        "type": "mqtt in",
+        "z": "54db409134b9e678",
+        "name": "",
+        "topic": "mrc/FanState",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "18e03f75f9504026",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 210,
+        "y": 380,
+        "wires": [
+            [
+                "e9185ba630d9e64a"
+            ]
+        ]
+    },
+    {
+        "id": "a376b88696780e4b",
+        "type": "mqtt in",
+        "z": "54db409134b9e678",
+        "name": "",
+        "topic": "mrc/LEDState",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "18e03f75f9504026",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 230,
+        "y": 440,
+        "wires": [
+            [
+                "32f5a57696246b1c"
+            ]
+        ]
+    },
+    {
+        "id": "18e03f75f9504026",
+        "type": "mqtt-broker",
+        "name": "Broker MRC",
+        "broker": "183.182.103.136",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "c761ba35acda90b8",
+        "type": "ui_group",
+        "name": "All Sensor ",
+        "tab": "56ada3c8b5a8da37",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f7b08c345a9d34a4",
+        "type": "ui_group",
+        "name": "Controler",
+        "tab": "56ada3c8b5a8da37",
+        "order": 2,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "56ada3c8b5a8da37",
+        "type": "ui_tab",
+        "name": "TEST",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
